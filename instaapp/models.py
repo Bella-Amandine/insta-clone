@@ -50,4 +50,10 @@ class Post(models.Model):
 
     def get_number_of_likes(self):
         return self.likes.count()
+
+class Comment(models.Model):
+    comment = models.TextField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
+
     
