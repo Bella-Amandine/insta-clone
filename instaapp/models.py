@@ -31,6 +31,10 @@ class Post(models.Model):
     def save_post(self):
         self.save()
 
+    @property
+    def get_all_comments(self):
+        return self.comments.all()
+
     @classmethod
     def delete_post(cls, image_id):
         cls.objects.filter(id = image_id).delete()
@@ -56,4 +60,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
 
-    
+
+class Follow(models.Model):
+    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followers = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
