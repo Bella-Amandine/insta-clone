@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SignupForm
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def signup(request):
@@ -18,5 +19,6 @@ def signup(request):
         return render(request, 'registration/signup.html', {"form":form})
 
 
+@login_required(login_url='login')
 def index(request):
     return render(request, 'instaapp/index.html')
