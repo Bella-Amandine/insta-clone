@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import SignupForm
+from django.http import HttpResponseRedirect
+from .forms import SignupForm, PostForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from .models import Profile, Post, Comment, Follow
+from django.contrib.auth.models import User
 
 # Create your views here.
 def signup(request):
@@ -21,4 +24,18 @@ def signup(request):
 
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'instaapp/index.html')
+    posts = Post.get_all_posts()
+    users = User.objects.exclude(id=request.user.id)
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.Files)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = PostForm()
+    return render(request, 'instaapp/index.html', {'posts': posts, 'form': form, 'users': users})
+
+    
