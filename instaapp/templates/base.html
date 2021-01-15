@@ -13,10 +13,11 @@
     {% block styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% endblock %}
-    
+
     <title>Instaapp</title>
 </head>
 <body>
+    {% include "navbar.html" %}
     {% block content %}
 
     {% endblock %}
