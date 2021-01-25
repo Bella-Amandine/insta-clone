@@ -5,8 +5,9 @@
     <div class="container">
         <div class="row mt-3 justify-content-around border-bottom">
             <div class="col-sm-3 col-md-4">
-                <img src="{{my_profile.profile_photo.url}}" class="rounded-circle">
+                <img src="{{my_profile.profile_photo.url}}" class="rounded-circle" width="200" height="200">
                 <h5 class="text-muted">{{my_profile.user.username}}</h5>
+                <h6 class="text-muted">{{my_profile.bio}}</h6>
                 <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#updateProfiledModal">Edit Profile</a>
             </div>
             <div class="col-sm-9 col-md-8 align-self-center">

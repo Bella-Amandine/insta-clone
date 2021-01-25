@@ -23,10 +23,10 @@
                     {% if user.is_authenticated %}
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-info">{{user.username}}</a>
+                        <a href="{% url 'profile' %}" class="nav-link text-info">{{user.username}}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Profile</a>
+                        <a href="{% url 'profile' %}" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'logout' %}" class="nav-link">Logout</a>
