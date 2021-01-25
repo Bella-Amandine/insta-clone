@@ -58,8 +58,9 @@
                     <img class="rounded-circle user-img" src="{{ user.profile.profile_photo.url }}">
                 </div>
                 <div class="col-md-6 mt-4 user-detail">
-                    <span class=" text-secondary"><a
-                            href="">{{ user.username }}(You)</a></span> <br>
+                    <span class=" text-secondary">
+                        <a href="{% url 'profile' %}">{{ user.username }}(You)</a>
+                    </span> <br>
                     
                     <button class="btn" type="button" data-toggle="modal" data-target="#uploadModal"> 
                         <span class="fas fa-plus"></span>
