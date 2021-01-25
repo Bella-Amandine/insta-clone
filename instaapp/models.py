@@ -20,6 +20,10 @@ class Profile(models.Model):
     @classmethod
     def get_all_profiles(cls):
         return cls.objects.all()
+    
+    @classmethod
+    def update_profile(cls,id, name, bio, profile_pic):
+        cls.objects.filter(id = id).update(name = name, bio = bio, profile_photo = profile_pic)
 
 class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
