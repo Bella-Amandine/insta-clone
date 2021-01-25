@@ -11,7 +11,11 @@ def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save()
+
+            new_profile = Profile(user = new_user)
+            new_profile.save_profile()
+
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username = username, password = raw_password)
@@ -28,11 +32,11 @@ def index(request):
     users = User.objects.exclude(id=request.user.id)
     
     if request.method == 'POST':
-        form = PostForm(request.POST, request.Files)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user.profile
-            post.save
+            post.save()
             return HttpResponseRedirect(request.path_info)
     else:
         form = PostForm()

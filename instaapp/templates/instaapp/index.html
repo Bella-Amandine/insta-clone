@@ -60,7 +60,11 @@
                 <div class="col-md-6 mt-4 user-detail">
                     <span class=" text-secondary"><a
                             href="">{{ user.username }}(You)</a></span> <br>
-                    <span class=" inname">{{ user.profile.name }}</span>
+                    
+                    <button class="btn" type="button" data-toggle="modal" data-target="#uploadModal"> 
+                        <span class="fas fa-plus"></span>
+                        Upload 
+                    </button>
                 </div>
             </div>
             <div class="row" >
@@ -104,7 +108,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="{% url 'index' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token%}
 
                     {{ form|crispy }}
